@@ -8,8 +8,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="css/screen.css">
+    <link rel="stylesheet" href="css/styles.css">
     <title>{% block title %}   {% endblock title %}</title>
-    
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
     
   </head>
   <body>
@@ -91,11 +94,11 @@ SignUp
         </button>
       </div>
       <div class="modal-body">
-        <form action= "/signup" method='post'>
+        <form action= "/signup" method='post' id="signupForm">
           {% csrf_token %}
   <div class="form-group">
     <label for="username">Username</label>
-    <input type="text" class="form-control" id="username" name="username" placeholder="Choose a unique username" required>
+    <input type="text" class="form-control" minlength="2" id="username" name="username" placeholder="Choose a unique username" required>
   </div>
   <div class="form-group">
     <label for="fname">First Name</label>
@@ -110,18 +113,25 @@ SignUp
     <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
   </div>
   <div class="form-group">
-    <label for="pass1">Choose a password</label>
-    <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Choose Your Password" required>
+    <label for="pass1">Type ypur password</label>
+    <input type="password" class="form-control" minlength="6" id="pass1" name="pass1" placeholder="Type Your Password" required>
   </div>
   <div class="form-group">
     <label for="pass2">Confirm Password</label>
-    <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Enter your password again" required>
+    <input type="password" class="form-control" id="pass2" equalTo="pass1" name="pass2" placeholder="Enter your password again" required>
   </div>
- 
-
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<script>
+  $().ready(function(){
+    $("#signupForm").validate({
+      rules:{username:{minlength:2},
+            pass1:{minlength:6},
+            pass2:{minlength:6, equalTo:#pass1},
+          }
+    })
+  })
+</script>
       </div>
       <div class="modal-footer">
       </div>
@@ -142,10 +152,10 @@ SignUp
         </button>
       </div>
       <div class="modal-body">
-        <form action="/login" method="POST"> {% csrf_token %}
+        <form action="/login" method="POST" id="loginForm"> {% csrf_token %}
   <div class="form-group">
     <label for="username">Username</label>
-    <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Enter your username "required>
+    <input type="text" class="form-control" id="loginusername" name="loginusername" minlength="2" placeholder="Enter your username "required>
   </div>
   <div class="form-group">
     <label for="pass">Enter your password </label>
@@ -154,6 +164,9 @@ SignUp
  
         <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<script>
+  $("#loginForm").validate();
+</script>
 <a href="http://127.0.0.1:8000/reset_password/"><button type="submit" class="btn btn-primary">Reset Password</button>
       </div>
        <div class="modal-footer">
