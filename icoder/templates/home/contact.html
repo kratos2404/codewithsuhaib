@@ -34,6 +34,31 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     <script>
+      jQuery('#registerForm').validate({
+        rules:{
+          username:"required",
+          email:{
+            required:true,
+            email:true
+          },
+          password1:{
+            required:true,
+            minlength:5
+          },
+        },
+        messages:{
+          username:"Please enter your name",
+          email:{
+            required:"Please enter email",
+            email:"Please enter valid email",
+          },
+        },
+        submitHandler:function(form){
+          form.submit();
+        }
+      });
+    </script>
+    <script>
       jQuery$("#commentForm").validate();
     </script>
     </div>
