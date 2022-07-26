@@ -61,8 +61,8 @@ def upload(request):
             img = request.POST.get('img')
 
             note = Post()
-            note.title =  title
             note.slug = slug
+            note.title =  title
             note.content = content
             note.img = img
             note.user = request.user
