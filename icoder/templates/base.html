@@ -127,10 +127,10 @@ SignUp
     $("#signupForm").validate({
       rules:{username:{minlength:2},
             pass1:{minlength:6},
-            pass2:{minlength:6, equalTo:#pass1},
+            pass2:{minlength:6, equalTo:"#pass1"},
           }
-    })
-  })
+    });
+  });
 </script>
       </div>
       <div class="modal-footer">
