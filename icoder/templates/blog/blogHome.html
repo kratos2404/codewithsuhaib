@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block blogactive %} active {% endblock blogactive %}
+{% block body %}
+<div class="container my-3 ">
+    <h2>Coding Articles by iSuhaib</h2>
+    {% for post in allPosts  %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Article  by {{post.user}}</strong>
+            <h3 class="mb-0">{{post.title}}</h3>
+            <div class="mb-1 text-muted">{{post.timeStamp}}</div>
+            <p class="card-text mb-auto">{{post.slug| truncatechars:500}}</p>
+            <div class="container">
+            <div class="my-2">
+            	<a href="/blog/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+            </div>
+            
+            {% comment %} <a href="update/{{post.id}}" class="btn btn-warning" id = '{{post.id}}'>edit</a>
+            <a href="delete/{{post.id}}" class="btn btn-danger" id = '{{post.id}}'>delete</a> {% endcomment %}
+        </div>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                <title>Placeholder</title>
+                {% comment %} <img src={{post.img.url}}><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text> {% endcomment %}
+            </svg>
+        </div>
+        </div>
+
+        {% endfor %}
+</div>
+
+
+ {% endblock %}
