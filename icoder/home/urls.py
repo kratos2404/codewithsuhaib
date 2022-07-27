@@ -11,7 +11,6 @@ urlpatterns = [
     path('signup', views.handleSignUp, name="handleSignUp"),
     path('login', views.handeLogin, name="handleLogin"),
     path('logout', views.handelLogout, name="handleLogout"),
-    path('accounts/', include('allauth.urls')),
     path('reset_password/',
     auth_views.PasswordResetView.as_view(template_name="home/password_reset.html"),
     name="reset_password"),
