@@ -38,12 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'home.apps.HomeConfig', 
     'blog.apps.BlogConfig',
     'django.contrib.humanize',
     'crispy_forms',
     
 ]
+SITE_ID = 1
+
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,6 +63,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'icoder.urls'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 TEMPLATES = [
     {
